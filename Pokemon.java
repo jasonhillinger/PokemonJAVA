@@ -17,6 +17,35 @@ public class Pokemon{
         abilities = new Moves[4];
     }
 
-    
+    // Methods
+
+    //Getters and setters
+    public void setHealth(int _health){
+        health = _health;
+    }
+
+    public int getHealth(){
+        return health;
+    }
+
+    public void setName(String _name){
+        name = _name;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public void setLevel(int val){
+        level = val;
+    }
+
+    public int getLevel(){
+        return level;
+    }
+
+    public void setAbility(Moves move,int abilitySlot){
+        abilities[abilitySlot] = move;
+    }
 
 }
