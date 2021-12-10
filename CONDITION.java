@@ -1,0 +1,3 @@
+public enum CONDITION {
+    HEALTHY,POISONED,BURNING,FROZEN;
+}

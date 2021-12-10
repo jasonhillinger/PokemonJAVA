@@ -5,10 +5,8 @@ public class Pokemon{
     private int health;
     private String name;
     private enum STATUS{ALIVE,FEINT};
-    private enum CONDITION{HEALTHY,POISONED,BURNING,FROZEN};
     private STATUS state;   //Either Alive or Feint
     private CONDITION condition;    //Conditions applied for enemy pokemon moves.
-    private enum TYPE{FIRE,WATER,LEAF};
     private TYPE type;
     private TYPE weakness;
     private int level;
