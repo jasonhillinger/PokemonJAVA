@@ -15,8 +15,13 @@ public class Trainer {
         if (amountOfPokemon > trainerPokemon.length) {
             System.out.println("Trainer cannot hold anymore Pokemon!");
         } else {
-            trainerPokemon[amountOfPokemon] = pokeAdd;
-            amountOfPokemon++;
+            try {
+                trainerPokemon[amountOfPokemon] = (Pokemon) pokeAdd.clone();
+                amountOfPokemon++;
+            } catch (CloneNotSupportedException e) {
+                System.out.println("CLONING ERROR");
+            }
+            
         }
     }
 

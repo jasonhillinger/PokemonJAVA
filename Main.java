@@ -7,10 +7,9 @@ public class Main {
 
         trainer1.addPokemon(charmander);
         // trainer1.getPokemon(0).attack(enemy, move);
-        charmander.setAbility(ember, 0);
-        charmander.printAbilities();
-        charmander.attack(squirtle, 0);
-        System.out.println(squirtle.getHealth());
+        trainer1.getPokemon(0).setHealth(420);
+        System.out.println("CLONED HP: "+ trainer1.getPokemon(0).getHealth());
+        System.out.println("ORIGINAL: "+ charmander.getHealth());
 
     }
 }

@@ -1,4 +1,4 @@
-public class Pokemon {
+public class Pokemon implements Cloneable{
     // Parent Class for all Pokemon
 
     // Data members
@@ -154,6 +154,12 @@ public class Pokemon {
         } catch (NullPointerException e) {
             // Do nothing
         }
+    }
+
+    //used to clone Pokemon to a trainer
+    public Object clone() throws CloneNotSupportedException
+    {
+        return super.clone();
     }
 
 }
