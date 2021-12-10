@@ -11,33 +11,32 @@ public class Trainer {
         amountOfPokemon = 0;
     }
 
-    public void addPokemon(Pokemon pokeAdd){
-        if(amountOfPokemon > trainerPokemon.length){
+    public void addPokemon(Pokemon pokeAdd) {
+        if (amountOfPokemon > trainerPokemon.length) {
             System.out.println("Trainer cannot hold anymore Pokemon!");
-        }
-        else{
-        trainerPokemon[amountOfPokemon] = pokeAdd;
-        amountOfPokemon++;
+        } else {
+            trainerPokemon[amountOfPokemon] = pokeAdd;
+            amountOfPokemon++;
         }
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public Pokemon getPokemon(int index){
+    public Pokemon getPokemon(int index) {
         return trainerPokemon[index];
     }
 
-    public void printPokemon(){
-        System.out.println(name +"'s Current Pokemon");
+    public void printPokemon() {
+        System.out.println(name + "'s Current Pokemon");
         try {
             for (int i = 0; i < trainerPokemon.length; i++) {
                 System.out.println(trainerPokemon[i].getName());
             }
         } catch (Exception e) {
-            //Do nothing
+            // Do nothing
         }
-        
+
     }
 }

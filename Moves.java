@@ -4,10 +4,10 @@ public class Moves {
     private int powerPoints; // Amount of times this move can be used. AKA PP in game
     private int damage; // amount of damage this ability will cause to another pokemons HP
     private TYPE type;
-    private CONDITION condition; //Condition that will be applied when ability is used.
+    private CONDITION condition; // Condition that will be applied when ability is used.
     private int levelRequirement;
 
-    public Moves(String _name, int _powerPoints,int _damage,TYPE _type,CONDITION _condition, int _level) {
+    public Moves(String _name, int _powerPoints, int _damage, TYPE _type, CONDITION _condition, int _level) {
         name = _name;
         powerPoints = _powerPoints;
         damage = _damage;
@@ -16,31 +16,31 @@ public class Moves {
         levelRequirement = _level;
     }
 
-    public int getDamage(){
+    public int getDamage() {
         return damage;
     }
 
-    public TYPE getType(){
+    public TYPE getType() {
         return type;
     }
 
-    public int getPowerpoints(){
+    public int getPowerpoints() {
         return powerPoints;
     }
 
-    public void setPowerpoints(int val){
+    public void setPowerpoints(int val) {
         powerPoints = val;
     }
 
-    public void use(){
+    public void use() {
         powerPoints--;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public int getLevelRequirement(){
+    public int getLevelRequirement() {
         return levelRequirement;
     }
 }
