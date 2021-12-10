@@ -31,4 +31,8 @@ public class Moves {
     public void use(){
         powerPoints--;
     }
+
+    public String getName(){
+        return name;
+    }
 }

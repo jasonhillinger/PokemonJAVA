@@ -16,6 +16,8 @@ public class Pokemon {
     private int level;
     private Moves[] abilities;
 
+    private Moves empty = new Moves("Empty", 0, 0, TYPE.NONE, CONDITION.NONE, 0);
+
     // constructor
     Pokemon(int _health, String _name, int _level) {
         health = _health;
@@ -24,6 +26,10 @@ public class Pokemon {
         state = STATUS.ALIVE;
         condition = CONDITION.HEALTHY;
         abilities = new Moves[4];
+        //initializing moves to empty
+        for (int i = 0; i < abilities.length; i++) {
+            abilities[i] = empty;
+        }
     }
 
     // Methods
@@ -88,6 +94,14 @@ public class Pokemon {
                 enemy.health = 0; // ensures no negative HP
                 enemy.feint(); // pokemon feints due to zero health
             }
+        }
+    }
+
+    //will print the abilities with powerpoints and the array slot associated with it
+    public void printAbilities(){
+        System.out.println("Name: " + name + "\tHP: " + health);
+        for (int i = 0; i < abilities.length; i++) {
+            System.out.println(i+1 + ": " + abilities[i].getName() + " PP: "+abilities[i].getPowerpoints());
         }
     }
 

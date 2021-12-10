@@ -1,3 +1,3 @@
 public enum TYPE {
-    FIRE, WATER, LEAF;
+    FIRE, WATER, LEAF, NONE;
 }
