@@ -78,4 +78,17 @@ public class Pokemon {
         state = STATUS.ALIVE;
     }
 
+    public void attack(Pokemon enemy, Moves move) {
+        if (move.getPowerpoints() <= 0) {
+            System.out.println("Not enough PP!");
+        } else {
+            enemy.health -= move.getDamage();
+            move.use();
+            if (enemy.health <= 0) {
+                enemy.health = 0; // ensures no negative HP
+                enemy.feint(); // pokemon feints due to zero health
+            }
+        }
+    }
+
 }
