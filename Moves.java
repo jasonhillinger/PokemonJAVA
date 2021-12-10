@@ -20,6 +20,10 @@ public class Moves {
         return damage;
     }
 
+    public TYPE getType(){
+        return type;
+    }
+
     public int getPowerpoints(){
         return powerPoints;
     }

@@ -16,19 +16,28 @@ public class Pokemon {
     private int level;
     private Moves[] abilities;
 
-    private Moves empty = new Moves("Empty", 0, 0, TYPE.NONE, CONDITION.NONE, 0);
-
     // constructor
-    Pokemon(int _health, String _name, int _level) {
+    Pokemon(int _health, String _name, int _level, TYPE _type) {
         health = _health;
         name = _name;
         level = _level;
         state = STATUS.ALIVE;
         condition = CONDITION.HEALTHY;
         abilities = new Moves[4];
-        //initializing moves to empty
-        for (int i = 0; i < abilities.length; i++) {
-            abilities[i] = empty;
+        type = _type;
+        switch (type) {
+            case FIRE:
+                weakness = TYPE.WATER;
+                break;
+            case WATER:
+                weakness = TYPE.LEAF;
+                break;
+            case LEAF:
+                weakness = TYPE.FIRE;
+                break;
+            default:
+                weakness = TYPE.NONE;
+                break;
         }
     }
 
@@ -67,6 +76,22 @@ public class Pokemon {
         return abilities[abilitySlot];
     }
 
+    public CONDITION getCondition(){
+        return condition;
+    }
+
+    public void setCondition(CONDITION cond){
+        condition = cond;
+    }
+
+    public TYPE getWeakness(){
+        return weakness;
+    }
+
+    public void setWeakness(TYPE weak){
+        weakness = weak;
+    }
+
     // Regular Methods
 
     // Levels up pokemon
@@ -78,30 +103,48 @@ public class Pokemon {
     // Kills/Feints Pokemon. We use Feint as a dead pokemon
     public void feint() {
         state = STATUS.FEINT;
+        health = 0;
+        System.out.println(name + " has feinted!");
     }
 
-    public void revive() {
+    public void revive(int hp) {
         state = STATUS.ALIVE;
+        health += hp;
+        System.out.println(name + " has been revived with " + hp + " health");
     }
 
-    public void attack(Pokemon enemy, Moves move) {
-        if (move.getPowerpoints() <= 0) {
+    public void attack(Pokemon enemy, int abilityNum) {
+        float damageMulti; //damage being multiplied depending on weakness
+        if(abilities[abilityNum].getType() == enemy.weakness){
+            damageMulti = 2;    //2x damage if enemy is weak to type of attack
+        }
+        else{
+            damageMulti = 1;  //regular damage otherwise
+        }
+
+        if (abilities[abilityNum].getPowerpoints() <= 0) {
             System.out.println("Not enough PP!");
         } else {
-            enemy.health -= move.getDamage();
-            move.use();
+            enemy.health -= (int)(abilities[abilityNum].getDamage()*damageMulti);
+            abilities[abilityNum].use();
+            System.out.println(name + " attacked " + enemy.name + " with " + abilities[abilityNum].getName() + " for "
+                    + abilities[abilityNum].getDamage()*damageMulti + " damage!");
             if (enemy.health <= 0) {
-                enemy.health = 0; // ensures no negative HP
                 enemy.feint(); // pokemon feints due to zero health
             }
         }
     }
 
-    //will print the abilities with powerpoints and the array slot associated with it
-    public void printAbilities(){
-        System.out.println("Name: " + name + "\tHP: " + health);
-        for (int i = 0; i < abilities.length; i++) {
-            System.out.println(i+1 + ": " + abilities[i].getName() + " PP: "+abilities[i].getPowerpoints());
+    // will print the abilities with powerpoints and the array slot associated with
+    // it
+    public void printAbilities() {
+        try {
+            System.out.println("Name: " + name + "\tHP: " + health);
+            for (int i = 0; i < abilities.length; i++) {
+                System.out.println(i + 1 + ": " + abilities[i].getName() + " PP: " + abilities[i].getPowerpoints());
+            }
+        } catch (NullPointerException e) {
+            // Do nothing
         }
     }
 
