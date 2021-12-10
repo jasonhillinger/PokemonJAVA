@@ -14,6 +14,7 @@ public class Pokemon {
     private TYPE type;
     private TYPE weakness;
     private int level;
+    private int speed;
     private Moves[] abilities;
 
     // constructor
@@ -69,35 +70,42 @@ public class Pokemon {
     }
 
     public void setAbility(Moves move, int abilitySlot) {
-        abilities[abilitySlot] = move;
+        if (move.getLevelRequirement() > level) {
+            System.out.println(name + " is too low of level to learn " + move.getName());
+        } else {
+            abilities[abilitySlot] = move;
+        }
     }
 
     public Moves getAbility(int abilitySlot) {
         return abilities[abilitySlot];
     }
 
-    public CONDITION getCondition(){
+    public CONDITION getCondition() {
         return condition;
     }
 
-    public void setCondition(CONDITION cond){
+    public void setCondition(CONDITION cond) {
         condition = cond;
     }
 
-    public TYPE getWeakness(){
+    public TYPE getWeakness() {
         return weakness;
     }
 
-    public void setWeakness(TYPE weak){
+    public void setWeakness(TYPE weak) {
         weakness = weak;
     }
 
     // Regular Methods
 
     // Levels up pokemon
-    // TODO: Prevent level from exceeding 100
     public void levelUp() {
         level++;
+        if (level > 100) {
+            level = 100;
+        }
+        System.out.println(name + " has leveled up and is now level " + level + "!");
     }
 
     // Kills/Feints Pokemon. We use Feint as a dead pokemon
@@ -107,6 +115,7 @@ public class Pokemon {
         System.out.println(name + " has feinted!");
     }
 
+    // revives Pokemon with a set amount of health
     public void revive(int hp) {
         state = STATUS.ALIVE;
         health += hp;
@@ -114,21 +123,20 @@ public class Pokemon {
     }
 
     public void attack(Pokemon enemy, int abilityNum) {
-        float damageMulti; //damage being multiplied depending on weakness
-        if(abilities[abilityNum].getType() == enemy.weakness){
-            damageMulti = 2;    //2x damage if enemy is weak to type of attack
-        }
-        else{
-            damageMulti = 1;  //regular damage otherwise
+        float damageMulti; // damage being multiplied depending on weakness
+        if (abilities[abilityNum].getType() == enemy.weakness) {
+            damageMulti = 2; // 2x damage if enemy is weak to type of attack
+        } else {
+            damageMulti = 1; // regular damage otherwise
         }
 
         if (abilities[abilityNum].getPowerpoints() <= 0) {
             System.out.println("Not enough PP!");
         } else {
-            enemy.health -= (int)(abilities[abilityNum].getDamage()*damageMulti);
+            enemy.health -= (int) (abilities[abilityNum].getDamage() * damageMulti);
             abilities[abilityNum].use();
             System.out.println(name + " attacked " + enemy.name + " with " + abilities[abilityNum].getName() + " for "
-                    + abilities[abilityNum].getDamage()*damageMulti + " damage!");
+                    + abilities[abilityNum].getDamage() * damageMulti + " damage!");
             if (enemy.health <= 0) {
                 enemy.feint(); // pokemon feints due to zero health
             }

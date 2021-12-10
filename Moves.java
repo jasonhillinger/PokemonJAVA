@@ -39,4 +39,8 @@ public class Moves {
     public String getName(){
         return name;
     }
+
+    public int getLevelRequirement(){
+        return levelRequirement;
+    }
 }

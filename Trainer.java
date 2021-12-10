@@ -21,7 +21,23 @@ public class Trainer {
         }
     }
 
+    public String getName(){
+        return name;
+    }
+
     public Pokemon getPokemon(int index){
         return trainerPokemon[index];
+    }
+
+    public void printPokemon(){
+        System.out.println(name +"'s Current Pokemon");
+        try {
+            for (int i = 0; i < trainerPokemon.length; i++) {
+                System.out.println(trainerPokemon[i].getName());
+            }
+        } catch (Exception e) {
+            //Do nothing
+        }
+        
     }
 }
