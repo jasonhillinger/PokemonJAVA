@@ -8,6 +8,7 @@ public class Main {
         trainer1.addPokemon(AllPokemon.charmander);
         trainer2.addPokemon(AllPokemon.squirtle);
         // trainer1.getPokemon(0).attack(enemy, move);
+
         trainer1.getPokemon(0).setAbility(ember, 0);
         trainer1.getPokemon(0).printAbilities();
         trainer1.getPokemon(0).attack(trainer2.getPokemon(0), 0);
