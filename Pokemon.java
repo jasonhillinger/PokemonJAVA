@@ -1,4 +1,4 @@
-public class Pokemon implements Cloneable{
+public class Pokemon implements Cloneable {
     // Parent Class for all Pokemon
 
     // Data members
@@ -156,9 +156,8 @@ public class Pokemon implements Cloneable{
         }
     }
 
-    //used to clone Pokemon to a trainer
-    public Object clone() throws CloneNotSupportedException
-    {
+    // used to clone Pokemon to a trainer
+    public Object clone() throws CloneNotSupportedException {
         return super.clone();
     }
 

@@ -21,7 +21,7 @@ public class Trainer {
             } catch (CloneNotSupportedException e) {
                 System.out.println("CLONING ERROR");
             }
-            
+
         }
     }
 
@@ -31,6 +31,10 @@ public class Trainer {
 
     public Pokemon getPokemon(int index) {
         return trainerPokemon[index];
+    }
+
+    public Pokemon[] getPokeList() {
+        return trainerPokemon;
     }
 
     public void printPokemon() {
