@@ -93,6 +93,10 @@ public class Pokemon implements Cloneable {
         return weakness;
     }
 
+    public TYPE getType(){
+        return type;
+    }
+
     public void setWeakness(TYPE weak) {
         weakness = weak;
     }
